@@ -98,3 +98,5 @@ public class ControladorListarExercicios {
 		}
 	}
 }
+
+//teste primeiro commit
