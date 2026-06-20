@@ -123,7 +123,7 @@ public class PanelCadastroAluno extends JPanel implements ActionListener {
 		spinAltura.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
 		spinAltura.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		spinAltura.setFont(new Font("Fira Code Light", Font.PLAIN, 12));
-		spinAltura.setModel(new SpinnerNumberModel(0.0, 0.0, 1.0E7, 5.0));
+		spinAltura.setModel(new SpinnerNumberModel(0.0, 0.0, 1.0E7, 1.0));
 		spinAltura.setBounds(10, 11, 71, 30);
 		panelAltura.add(spinAltura);
 

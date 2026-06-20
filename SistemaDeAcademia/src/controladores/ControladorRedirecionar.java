@@ -1,6 +1,6 @@
 package controladores;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import modelo.BancoDeDados;
 import visao.PanelBuscaAluno;
@@ -9,6 +9,7 @@ import visao.PanelCadastroExercicio;
 import visao.PanelCadastroTreino;
 import visao.PanelConsultaTreino;
 import visao.PanelListarExercicios;
+import javax.swing.SwingUtilities;
 
 /**
  * @author Kaua Vinicius
@@ -82,6 +83,7 @@ public class ControladorRedirecionar {
 			if (BancoDeDados.getInstancia().getExercicios().size() > 0 && BancoDeDados.getInstancia().getAlunos().size() > 0) {
 				operarTela(id, cadastroT);
 			} else {
+				JOptionPane.showMessageDialog(ControladorRedirecionar.tela, "Cadastre ao menos um aluno e um exercício antes de cadastrar um treino.", "Cadastro Incompleto", JOptionPane.WARNING_MESSAGE);
 				operarTela(id, ControladorRedirecionar.padrao);
 			}
 		} else if (id == 5) {
