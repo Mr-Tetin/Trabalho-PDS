@@ -230,8 +230,6 @@ public class PanelMenu extends JFrame {
 		// Defino o controlador que realiza a coneccao entre backend e frontend
 		controlador = new ControladorMainLabel(this);
 		controlador.caminho(1);
-		controlador.iniciarValores();
-
 	}
 
 	/**

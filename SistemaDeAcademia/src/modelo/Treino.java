@@ -63,7 +63,7 @@ public class Treino extends BaseAcademia implements Operacoes {
 	 */
 	@Override
 	public void cadastro() {
-		BancoDeDados.getTreinos().add(this);
+		BancoDeDados.getInstancia().getTreinos().add(this);
 	}
 
 	/**
@@ -82,13 +82,13 @@ public class Treino extends BaseAcademia implements Operacoes {
 	public void editar(String endereco) {
 		// Editar no banco de dados de treinos
 		System.out.println(this.getNome());
-		for (int i = 0; i < BancoDeDados.getTreinos().size(); i++) {
-			if (BancoDeDados.getTreinos().get(i).getNome().contains(endereco)) {
-				BancoDeDados.getTreinos().set(i, this);
+		for (int i = 0; i < BancoDeDados.getInstancia().getTreinos().size(); i++) {
+			if (BancoDeDados.getInstancia().getTreinos().get(i).getNome().contains(endereco)) {
+				BancoDeDados.getInstancia().getTreinos().set(i, this);
 			}
 		}
 		// Editar no banco de dados de alunos
-		for (Aluno aluno : BancoDeDados.getAlunos()) {
+		for (Aluno aluno : BancoDeDados.getInstancia().getAlunos()) {
 			for (int j = 0; j < aluno.getTreinos().size(); j++) {
 				if (aluno.getTreinos().get(j).getNome().equals(endereco)) {
 					aluno.getTreinos().set(j, this);
@@ -112,13 +112,13 @@ public class Treino extends BaseAcademia implements Operacoes {
 	@Override
 	public void deletar() {
 		// Deletar no banco de dados de treino
-		for (int i = 0; i < BancoDeDados.getTreinos().size(); i++) {
-			if (BancoDeDados.getTreinos().get(i).getNome().contains(this.getNome())) {
-				BancoDeDados.getTreinos().remove(i);
+		for (int i = 0; i < BancoDeDados.getInstancia().getTreinos().size(); i++) {
+			if (BancoDeDados.getInstancia().getTreinos().get(i).getNome().contains(this.getNome())) {
+				BancoDeDados.getInstancia().getTreinos().remove(i);
 			}
 		}
 		// Deletar no banco de dados de alunos
-		for (Aluno aluno : BancoDeDados.getAlunos()) {
+		for (Aluno aluno : BancoDeDados.getInstancia().getAlunos()) {
 			for (int j = 0; j < aluno.getTreinos().size(); j++) {
 				if (aluno.getTreinos().get(j).getNome().contains(this.getNome())) {
 					aluno.getTreinos().remove(j);
@@ -139,7 +139,7 @@ public class Treino extends BaseAcademia implements Operacoes {
 	 * @return Treino
 	 */
 	public static Treino getUmTreino(String nome) {
-		for (Treino treinoComparado : BancoDeDados.getTreinos()) {
+		for (Treino treinoComparado : BancoDeDados.getInstancia().getTreinos()) {
 			if (nome.equals(treinoComparado.getNome())) {
 				return treinoComparado;
 			}
@@ -196,7 +196,7 @@ public class Treino extends BaseAcademia implements Operacoes {
 	 * @return String
 	 */
 	public String getAlunoAnexado() {
-		for (Aluno aluno : BancoDeDados.getAlunos()) {
+		for (Aluno aluno : BancoDeDados.getInstancia().getAlunos()) {
 			for (int i = 0; i < aluno.getTreinos().size(); i++) {
 				if (aluno.getTreinos().get(i).getNome().equals(this.getNome())) {
 					return aluno.getNome();

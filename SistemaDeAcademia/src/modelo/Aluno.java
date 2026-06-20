@@ -94,7 +94,7 @@ public class Aluno implements Operacoes {
 	 */
 	@Override
 	public void cadastro() {
-		BancoDeDados.getAlunos().add(this);
+		BancoDeDados.getInstancia().getAlunos().add(this);
 	}
 
 	/**
@@ -105,13 +105,13 @@ public class Aluno implements Operacoes {
 	 */
 	@Override
 	public void editar(String endereco) {
-		for (int i = 0; i <= BancoDeDados.getAlunos().size(); i++) {
-			if (BancoDeDados.getAlunos().get(i).getNome().equals(endereco)) {
-				BancoDeDados.getAlunos().set(i, this);
+		for (int i = 0; i <= BancoDeDados.getInstancia().getAlunos().size(); i++) {
+			if (BancoDeDados.getInstancia().getAlunos().get(i).getNome().equals(endereco)) {
+				BancoDeDados.getInstancia().getAlunos().set(i, this);
 				return;
 			}
 		}
-		BancoDeDados.getAlunos().add(this);
+		BancoDeDados.getInstancia().getAlunos().add(this);
 	}
 
 	/**
@@ -126,24 +126,24 @@ public class Aluno implements Operacoes {
 		ArrayList<Treino> bancoAux = new ArrayList<Treino>();
 		int aux;
 		
-		for (int i = 0; i < BancoDeDados.getAlunos().size(); i++) {
-			if (BancoDeDados.getAlunos().get(i).getNome().contains(this.nome)) {
-				for (Treino treinoaux: BancoDeDados.getTreinos()) {
+		for (int i = 0; i < BancoDeDados.getInstancia().getAlunos().size(); i++) {
+			if (BancoDeDados.getInstancia().getAlunos().get(i).getNome().contains(this.nome)) {
+				for (Treino treinoaux: BancoDeDados.getInstancia().getTreinos()) {
 					aux = 0;
-					for (Treino treino : BancoDeDados.getAlunos().get(i).getTreinos()) {
+					for (Treino treino : BancoDeDados.getInstancia().getAlunos().get(i).getTreinos()) {
 						if(!(treinoaux.getNome().equals(treino.getNome()))) {
 							aux++;
 						}
 					}	
-					if(aux == BancoDeDados.getAlunos().get(i).getTreinos().size()) {
+					if(aux == BancoDeDados.getInstancia().getAlunos().get(i).getTreinos().size()) {
 						bancoAux.add(treinoaux);
 					}
 				}
-				BancoDeDados.getAlunos().remove(i);
+				BancoDeDados.getInstancia().getAlunos().remove(i);
 			}
 		}
-		BancoDeDados.getTreinos().clear();
-		BancoDeDados.getTreinos().addAll(bancoAux);
+		BancoDeDados.getInstancia().getTreinos().clear();
+		BancoDeDados.getInstancia().getTreinos().addAll(bancoAux);
 	}
 
 	/**
@@ -184,9 +184,9 @@ public class Aluno implements Operacoes {
 	 * @return String[]
 	 */
 	public static String[] getTodosAlunos() {
-		String retornoAluno[] = new String[BancoDeDados.getAlunos().size()];
-		for (int i = 0; i < BancoDeDados.getAlunos().size(); i++) {
-			retornoAluno[i] = BancoDeDados.getAlunos().get(i).getNome();
+		String retornoAluno[] = new String[BancoDeDados.getInstancia().getAlunos().size()];
+		for (int i = 0; i < BancoDeDados.getInstancia().getAlunos().size(); i++) {
+			retornoAluno[i] = BancoDeDados.getInstancia().getAlunos().get(i).getNome();
 		}
 		return retornoAluno;
 	}
@@ -199,7 +199,7 @@ public class Aluno implements Operacoes {
 	 * @return Aluno
 	 */
 	public static Aluno getUmAluno(String nome) {
-		for (Aluno alunoComparado : BancoDeDados.getAlunos()) {
+		for (Aluno alunoComparado : BancoDeDados.getInstancia().getAlunos()) {
 			if (nome.equals(alunoComparado.getNome())) {
 				return alunoComparado;
 			}

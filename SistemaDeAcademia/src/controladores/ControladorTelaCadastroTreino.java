@@ -128,7 +128,7 @@ public class ControladorTelaCadastroTreino {
 	 */
 	public void anexarTreino(String alunoNome, Treino treinos) {
 		ArrayList<Treino> adicionar = new ArrayList<Treino>();
-		for (Aluno aluno : BancoDeDados.getAlunos()) {
+		for (Aluno aluno : BancoDeDados.getInstancia().getAlunos()) {
 			if (aluno.getNome() == alunoNome) {
 				adicionar.addAll(aluno.getTreinos());
 				if (adicionar.size() < 4) {

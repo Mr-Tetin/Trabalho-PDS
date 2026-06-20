@@ -55,7 +55,7 @@ public class Exercicio extends BaseAcademia implements Operacoes {
 	 */
 	@Override
 	public void cadastro() {
-		BancoDeDados.getExercicios().add(this);
+		BancoDeDados.getInstancia().getExercicios().add(this);
 	}
 
 	/**
@@ -72,13 +72,13 @@ public class Exercicio extends BaseAcademia implements Operacoes {
 	 */
 	@Override
 	public void editar(String endereco) {
-		for (int i = 0; i <= BancoDeDados.getExercicios().size(); i++) {
-			if (BancoDeDados.getExercicios().get(i).getNome().contains(endereco)) {
-				BancoDeDados.getExercicios().set(i, this);
+		for (int i = 0; i <= BancoDeDados.getInstancia().getExercicios().size(); i++) {
+			if (BancoDeDados.getInstancia().getExercicios().get(i).getNome().contains(endereco)) {
+				BancoDeDados.getInstancia().getExercicios().set(i, this);
 				return;
 			}
 		}
-		BancoDeDados.getExercicios().add(this);
+		BancoDeDados.getInstancia().getExercicios().add(this);
 	}
 
 	/**
@@ -95,12 +95,12 @@ public class Exercicio extends BaseAcademia implements Operacoes {
 	 */
 	@Override
 	public void deletar() {
-		for (int i = 0; i < BancoDeDados.getExercicios().size(); i++) {
-			if (BancoDeDados.getExercicios().get(i).getNome().equals(this.getNome())) {
-				BancoDeDados.getExercicios().remove(i);
+		for (int i = 0; i < BancoDeDados.getInstancia().getExercicios().size(); i++) {
+			if (BancoDeDados.getInstancia().getExercicios().get(i).getNome().equals(this.getNome())) {
+				BancoDeDados.getInstancia().getExercicios().remove(i);
 			}
 		}
-		for (Treino treino : BancoDeDados.getTreinos()) {
+		for (Treino treino : BancoDeDados.getInstancia().getTreinos()) {
 			for (int j = 0; j < treino.getExercicios().size(); j++) {
 				if (treino.getExercicios().get(j).getNome().equals(this.getNome())) {
 					treino.getExercicios().remove(j);
@@ -126,9 +126,9 @@ public class Exercicio extends BaseAcademia implements Operacoes {
 
 		ArrayList<String> retorno = new ArrayList<String>();
 		for (TipoDeGrupamento grupo : tipos) {
-			for (int i = 0; i < BancoDeDados.getExercicios().size(); i++) {
-				if (BancoDeDados.getExercicios().get(i).toString().contains(grupo.name())) {
-					retorno.add(BancoDeDados.getExercicios().get(i).getNome());
+			for (int i = 0; i < BancoDeDados.getInstancia().getExercicios().size(); i++) {
+				if (BancoDeDados.getInstancia().getExercicios().get(i).toString().contains(grupo.name())) {
+					retorno.add(BancoDeDados.getInstancia().getExercicios().get(i).getNome());
 				}
 			}
 		}
@@ -146,7 +146,7 @@ public class Exercicio extends BaseAcademia implements Operacoes {
 	 * @return Exercicio
 	 */
 	public static Exercicio getUmExercicio(String nome) {
-		for (Exercicio exercicioComparado : BancoDeDados.getExercicios()) {
+		for (Exercicio exercicioComparado : BancoDeDados.getInstancia().getExercicios()) {
 			if (nome.equals(exercicioComparado.getNome())) {
 				return exercicioComparado;
 			}
@@ -188,7 +188,7 @@ public class Exercicio extends BaseAcademia implements Operacoes {
 	public static ArrayList<Exercicio> parearExercicios(List<String> nomes) {
 		ArrayList<Exercicio> exercicios = new ArrayList<Exercicio>();
 		for (String nome : nomes) {
-			for (Exercicio exercicioUnico : BancoDeDados.getExercicios()) {
+			for (Exercicio exercicioUnico : BancoDeDados.getInstancia().getExercicios()) {
 				if (nome == exercicioUnico.getNome()) {
 					exercicios.add(exercicioUnico);
 				}

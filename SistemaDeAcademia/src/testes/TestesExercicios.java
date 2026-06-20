@@ -25,15 +25,15 @@ public class TestesExercicios {
 	@BeforeEach
 	void antes() {
 		/**
-		 * Aqui ha o método que será executado antes de qualquer teste
+		 * Aqui ha o mï¿½todo que serï¿½ executado antes de qualquer teste
 		 */
-		BancoDeDados.getExercicios().clear();
+		BancoDeDados.getInstancia().getExercicios().clear();
 	}
 
 	@Test
 	void cadastrarExercicio() {
 		/**
-		 * Aqui ha o teste para cadastrar um exercício
+		 * Aqui ha o teste para cadastrar um exercï¿½cio
 		 */
 		new PanelRedirecionar("Exercicios", "Consultar ");
 		PanelCadastroExercicio cadastroE = new PanelCadastroExercicio();
@@ -42,7 +42,7 @@ public class TestesExercicios {
 		cadastroE.getTextArea().setText("2x50");
 		cadastroE.getBtnCadastrar().doClick();
 		assertTrue(cadastroE.getComboBoxExercicio().getSelectedItem().toString().contains("QUADRICEPS"));
-		assertEquals(1, BancoDeDados.getExercicios().size());
+		assertEquals(1, BancoDeDados.getInstancia().getExercicios().size());
 	}
 
 	@Test
@@ -52,13 +52,13 @@ public class TestesExercicios {
 		 */
 		PanelCadastroExercicio cadastroE = new PanelCadastroExercicio();
 		cadastroE.getBtnCadastrar().doClick();
-		assertEquals(0, BancoDeDados.getExercicios().size());
+		assertEquals(0, BancoDeDados.getInstancia().getExercicios().size());
 	}
 
 	@Test
 	void editarExercicio() {
 		/**
-		 * Aqui ha o teste de editar um exercício
+		 * Aqui ha o teste de editar um exercï¿½cio
 		 */
 		new PanelRedirecionar("Exercicios", "Consultar ");
 		PanelCadastroExercicio cadastroE = new PanelCadastroExercicio();
@@ -67,10 +67,10 @@ public class TestesExercicios {
 		cadastroE.getTextArea().setText("2x50");
 		cadastroE.getBtnCadastrar().doClick();
 
-		PanelEditarExercicio editarE = new PanelEditarExercicio(BancoDeDados.getExercicios().get(0));
+		PanelEditarExercicio editarE = new PanelEditarExercicio(BancoDeDados.getInstancia().getExercicios().get(0));
 		editarE.getTextNome().setText("Leg press");
 		editarE.getBtnFinalizar().doClick();
-		assertEquals("Leg press", BancoDeDados.getExercicios().get(0).getNome());
+		assertEquals("Leg press", BancoDeDados.getInstancia().getExercicios().get(0).getNome());
 	}
 
 	@Test
@@ -84,12 +84,12 @@ public class TestesExercicios {
 		cadastroE.getComboBoxExercicio().setSelectedIndex(0);
 		cadastroE.getTextArea().setText("Voador");
 		cadastroE.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getExercicios().size());
+		assertEquals(1, BancoDeDados.getInstancia().getExercicios().size());
 
 		PanelListarExercicios listaE = new PanelListarExercicios();
 		listaE.getBtnBuscar().doClick();
 		listaE.getListExercicios().setSelectionInterval(0, 0);
 		listaE.getBtnDeletar().doClick();
-		assertEquals(0, BancoDeDados.getExercicios().size());
+		assertEquals(0, BancoDeDados.getInstancia().getExercicios().size());
 	}
 }

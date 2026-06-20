@@ -79,7 +79,7 @@ public class ControladorRedirecionar {
 			operarTela(id, cadastroE);
 		} else if (id == 4) {
 			PanelCadastroTreino cadastroT = new PanelCadastroTreino();
-			if (BancoDeDados.getExercicios().size() > 0 && BancoDeDados.getAlunos().size() > 0) {
+			if (BancoDeDados.getInstancia().getExercicios().size() > 0 && BancoDeDados.getInstancia().getAlunos().size() > 0) {
 				operarTela(id, cadastroT);
 			} else {
 				operarTela(id, ControladorRedirecionar.padrao);

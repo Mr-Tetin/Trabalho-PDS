@@ -17,7 +17,7 @@ import visao.PanelRedirecionar;
  * 
  * @author Kaua Vinicius
  * 
- *         Classe responsável pelos testes relacionados aos treinos
+ *         Classe responsï¿½vel pelos testes relacionados aos treinos
  *
  */
 
@@ -28,9 +28,9 @@ public class TestesTreino {
 		/**
 		 * Aqui ha o metodo que e executado antes de ser realizado qualquer teste
 		 */
-		BancoDeDados.getAlunos().clear();
-		BancoDeDados.getTreinos().clear();
-		BancoDeDados.getExercicios().clear();
+		BancoDeDados.getInstancia().getAlunos().clear();
+		BancoDeDados.getInstancia().getTreinos().clear();
+		BancoDeDados.getInstancia().getExercicios().clear();
 	}
 
 	@Test
@@ -46,7 +46,7 @@ public class TestesTreino {
 		cadastroAluno.getSpinIdade().setValue(19);
 		cadastroAluno.getSpinPeso().setValue(60.0);
 		cadastroAluno.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getAlunos().size());
+		assertEquals(1, BancoDeDados.getInstancia().getAlunos().size());
 
 		new PanelRedirecionar("Exercicios", "Consultar ");
 		PanelCadastroExercicio cadastroE = new PanelCadastroExercicio();
@@ -54,7 +54,7 @@ public class TestesTreino {
 		cadastroE.getComboBoxExercicio().setSelectedIndex(0);
 		cadastroE.getTextArea().setText("Crucifixo");
 		cadastroE.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getExercicios().size());
+		assertEquals(1, BancoDeDados.getInstancia().getExercicios().size());
 
 		new PanelRedirecionar("Treinos", "Consultar ");
 		PanelCadastroTreino cadastroT = new PanelCadastroTreino();
@@ -65,7 +65,7 @@ public class TestesTreino {
 		cadastroT.getSpinRep().setValue(4);
 		cadastroT.getSpinSerie().setValue(3);
 		cadastroT.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getTreinos().size());
+		assertEquals(1, BancoDeDados.getInstancia().getTreinos().size());
 	}
 
 	@Test
@@ -81,7 +81,7 @@ public class TestesTreino {
 		cadastroAluno.getSpinIdade().setValue(19);
 		cadastroAluno.getSpinPeso().setValue(60.0);
 		cadastroAluno.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getAlunos().size());
+		assertEquals(1, BancoDeDados.getInstancia().getAlunos().size());
 
 		new PanelRedirecionar("Exercicios", "Consultar ");
 		PanelCadastroExercicio cadastroE = new PanelCadastroExercicio();
@@ -89,7 +89,7 @@ public class TestesTreino {
 		cadastroE.getComboBoxExercicio().setSelectedIndex(0);
 		cadastroE.getTextArea().setText("Crucifixo");
 		cadastroE.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getExercicios().size());
+		assertEquals(1, BancoDeDados.getInstancia().getExercicios().size());
 
 		new PanelRedirecionar("Treinos", "Consultar ");
 		PanelCadastroTreino cadastroT = new PanelCadastroTreino();
@@ -104,7 +104,7 @@ public class TestesTreino {
 		PanelConsultaTreino consultaT = new PanelConsultaTreino();
 		consultaT.getListTreinos().setSelectedValue("Treino de peito", false);
 		consultaT.getBtnDeletar().doClick();
-		assertEquals(0, BancoDeDados.getTreinos().size());
+		assertEquals(0, BancoDeDados.getInstancia().getTreinos().size());
 	}
 
 	@Test
@@ -120,7 +120,7 @@ public class TestesTreino {
 		cadastroAluno.getSpinIdade().setValue(19);
 		cadastroAluno.getSpinPeso().setValue(60.0);
 		cadastroAluno.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getAlunos().size());
+		assertEquals(1, BancoDeDados.getInstancia().getAlunos().size());
 
 		new PanelRedirecionar("Exercicios", "Consultar ");
 		PanelCadastroExercicio cadastroE = new PanelCadastroExercicio();
@@ -128,7 +128,7 @@ public class TestesTreino {
 		cadastroE.getComboBoxExercicio().setSelectedIndex(0);
 		cadastroE.getTextArea().setText("Crucifixo");
 		cadastroE.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getExercicios().size());
+		assertEquals(1, BancoDeDados.getInstancia().getExercicios().size());
 
 		new PanelRedirecionar("Treinos", "Consultar ");
 		PanelCadastroTreino cadastroT = new PanelCadastroTreino();
@@ -140,10 +140,10 @@ public class TestesTreino {
 		cadastroT.getSpinSerie().setValue(3);
 		cadastroT.getBtnCadastrar().doClick();
 
-		PanelEditarTreino editarT = new PanelEditarTreino(BancoDeDados.getTreinos().get(0));
+		PanelEditarTreino editarT = new PanelEditarTreino(BancoDeDados.getInstancia().getTreinos().get(0));
 		editarT.getTextNome().setText("Outro treino de peito");
 		editarT.getListExerciciosTreino().setSelectionInterval(0, 0);
 		editarT.getBtnFinalizar().doClick();
-		assertEquals("Outro treino de peito", BancoDeDados.getTreinos().get(0).getNome());
+		assertEquals("Outro treino de peito", BancoDeDados.getInstancia().getTreinos().get(0).getNome());
 	}
 }

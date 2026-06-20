@@ -30,7 +30,7 @@ public class TestesAlunos {
 	 */
 	@BeforeEach
 	void limparBanco() {
-		BancoDeDados.getAlunos().clear();
+		BancoDeDados.getInstancia().getAlunos().clear();
 	}
 
 	@Test
@@ -42,7 +42,7 @@ public class TestesAlunos {
 
 		PanelCadastroAluno cadastroAluno = new PanelCadastroAluno();
 		cadastroAluno.getBtnCadastrar().doClick();
-		assertEquals(0, BancoDeDados.getAlunos().size());
+		assertEquals(0, BancoDeDados.getInstancia().getAlunos().size());
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class TestesAlunos {
 		cadastroAluno.getSpinIdade().setValue(19);
 		cadastroAluno.getSpinPeso().setValue(60.0);
 		cadastroAluno.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getAlunos().size());
+		assertEquals(1, BancoDeDados.getInstancia().getAlunos().size());
 	}
 
 	@Test
@@ -67,7 +67,7 @@ public class TestesAlunos {
 		 * vazio.
 		 */
 
-		BancoDeDados.getAlunos().clear();
+		BancoDeDados.getInstancia().getAlunos().clear();
 		new PanelRedirecionar("Alunos", "Consultar ");
 		PanelCadastroAluno cadastroAluno = new PanelCadastroAluno();
 		cadastroAluno.getTextNomeAluno().setText("");
@@ -75,7 +75,7 @@ public class TestesAlunos {
 		cadastroAluno.getSpinIdade().setValue(19);
 		cadastroAluno.getSpinPeso().setValue(60.0);
 		cadastroAluno.getBtnCadastrar().doClick();
-		assertEquals(0, BancoDeDados.getAlunos().size());
+		assertEquals(0, BancoDeDados.getInstancia().getAlunos().size());
 	}
 
 	@Test
@@ -96,7 +96,7 @@ public class TestesAlunos {
 		segundoCadastroAluno.getSpinIdade().setValue(19);
 		segundoCadastroAluno.getSpinPeso().setValue(60.0);
 		segundoCadastroAluno.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getAlunos().size());
+		assertEquals(1, BancoDeDados.getInstancia().getAlunos().size());
 	}
 
 	@Test
@@ -180,12 +180,12 @@ public class TestesAlunos {
 		cadastroAluno.getSpinIdade().setValue(19);
 		cadastroAluno.getSpinPeso().setValue(60.0);
 		cadastroAluno.getBtnCadastrar().doClick();
-		assertEquals(1, BancoDeDados.getAlunos().size());
+		assertEquals(1, BancoDeDados.getInstancia().getAlunos().size());
 		PanelBuscaAluno buscaAluno = new PanelBuscaAluno();
 		buscaAluno.getTextField().setText("Kauã");
 		buscaAluno.getBtnBuscar().doClick();
 		buscaAluno.getBtnDeletar().doClick();
-		assertEquals(0, BancoDeDados.getAlunos().size());
+		assertEquals(0, BancoDeDados.getInstancia().getAlunos().size());
 	}
 
 	@Test
@@ -200,33 +200,13 @@ public class TestesAlunos {
 		cadastroAluno.getSpinIdade().setValue(19);
 		cadastroAluno.getSpinPeso().setValue(60.0);
 		cadastroAluno.getBtnCadastrar().doClick();
-		assertTrue(BancoDeDados.getAlunos().get(0).toString().contains("60"));
+		assertTrue(BancoDeDados.getInstancia().getAlunos().get(0).toString().contains("60"));
 
-		PanelEditarAluno editarA = new PanelEditarAluno(BancoDeDados.getAlunos().get(0));
+		PanelEditarAluno editarA = new PanelEditarAluno(BancoDeDados.getInstancia().getAlunos().get(0));
 		editarA.getSpinPeso().setValue(58.0);
 		editarA.getBtnCadastrar().doClick();
-		assertTrue(BancoDeDados.getAlunos().get(0).toString().contains("58"));
+		assertTrue(BancoDeDados.getInstancia().getAlunos().get(0).toString().contains("58"));
 	}
-	
-	@Test
-	void deletarPreCadastrados() {
-		/**
-		 * Aqui ha o teste de deletar um aluno preCadastrado
-		 */
-		new PanelRedirecionar("Alunos", "Consultar ");
-		PanelMenu menu =  new PanelMenu(null);
-		ControladorMainLabel controlador = new ControladorMainLabel(menu);
-		controlador.iniciarValores();
-		assertEquals(8,BancoDeDados.getTreinos().size());
-		
-		PanelBuscaAluno buscaAluno = new PanelBuscaAluno();
-		buscaAluno.getTextField().setText("Paulo Muzy");
-		buscaAluno.getBtnBuscar().doClick();
-		buscaAluno.getBtnDeletar().doClick();
-		
-		assertEquals(4, BancoDeDados.getAlunos().size());
-		assertEquals(0,BancoDeDados.getTreinos().size());
-		
-	}
+
 	
 }

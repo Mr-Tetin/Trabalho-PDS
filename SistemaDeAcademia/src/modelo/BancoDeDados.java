@@ -11,35 +11,38 @@ import java.util.ArrayList;
 //teste
 public class BancoDeDados {
 
-	/**
-	 * Lista onde e armazenado todos os alunos, tal elemento deve ser acessado
-	 * mediante getters e nao pode ser instanciado novamente
-	 */
-	private final static ArrayList<Aluno> alunos = new ArrayList<Aluno>();
+	private static BancoDeDados instancia;
 
-	/**
-	 * Lista onde e armazenado todos os exercicios, tal elemento deve ser acessado
-	 * mediante getters e nao pode ser instanciado novamente
-	 */
-	private final static ArrayList<Exercicio> exercicios = new ArrayList<Exercicio>();
+	private ArrayList<Aluno> alunos;
+	private ArrayList<Exercicio> exercicios;
+	private ArrayList<Treino> treinos;
 
-	/**
-	 * Lista onde e armazenado todos os treinos, tal elemento deve ser acessado
-	 * mediante getters e nao pode ser instanciado novamente
-	 */
-	private final static ArrayList<Treino> treinos = new ArrayList<Treino>();
+	private BancoDeDados() {
+		alunos = new ArrayList<>();
+		exercicios = new ArrayList<>();
+		treinos = new ArrayList<>();
+	}
 
-	// Getters
-	public static ArrayList<Aluno> getAlunos() {
+	public static BancoDeDados getInstancia() {
+
+		if (instancia == null) {
+			instancia = new BancoDeDados();
+		}
+
+		return instancia;
+	}
+
+	public ArrayList<Aluno> getAlunos() {
 		return alunos;
 	}
 
-	public static ArrayList<Exercicio> getExercicios() {
+	public ArrayList<Exercicio> getExercicios() {
 		return exercicios;
 	}
 
-	public static ArrayList<Treino> getTreinos() {
+	public ArrayList<Treino> getTreinos() {
 		return treinos;
 	}
-
 }
+
+
