@@ -8,6 +8,7 @@ import java.util.ArrayList;
  *         Classe responsavel por armanezar todos os bancos de dados
  * 
  */
+//teste
 public class BancoDeDados {
 
 	/**
